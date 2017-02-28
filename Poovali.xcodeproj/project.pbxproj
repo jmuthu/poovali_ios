@@ -24,11 +24,11 @@
 		AFB69D8B1E5AF67B001DDC81 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D8A1E5AF67B001DDC81 /* FirstViewController.swift */; };
 		AFB69D8D1E5AF67B001DDC81 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D8C1E5AF67B001DDC81 /* SecondViewController.swift */; };
 		AFB69D901E5AF67B001DDC81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB69D8E1E5AF67B001DDC81 /* Main.storyboard */; };
-		AFB69D921E5AF67B001DDC81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFB69D911E5AF67B001DDC81 /* Assets.xcassets */; };
 		AFB69D951E5AF67B001DDC81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB69D931E5AF67B001DDC81 /* LaunchScreen.storyboard */; };
 		AFB69DA01E5AF67B001DDC81 /* PoovaliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D9F1E5AF67B001DDC81 /* PoovaliTests.swift */; };
 		AFB69DAB1E5AF67B001DDC81 /* PoovaliUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69DAA1E5AF67B001DDC81 /* PoovaliUITests.swift */; };
 		AFD247471E6530FE007B8224 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = AFD247491E6530FE007B8224 /* Localizable.stringsdict */; };
+		AFD247501E6592CA007B8224 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFD2474F1E6592CA007B8224 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,6 @@
 		AFB69D8A1E5AF67B001DDC81 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		AFB69D8C1E5AF67B001DDC81 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		AFB69D8F1E5AF67B001DDC81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AFB69D911E5AF67B001DDC81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFB69D941E5AF67B001DDC81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFB69D961E5AF67B001DDC81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFB69D9B1E5AF67B001DDC81 /* PoovaliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoovaliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +76,7 @@
 		AFB69DAA1E5AF67B001DDC81 /* PoovaliUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoovaliUITests.swift; sourceTree = "<group>"; };
 		AFB69DAC1E5AF67B001DDC81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFD247481E6530FE007B8224 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		AFD2474F1E6592CA007B8224 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +184,7 @@
 		AFB69D871E5AF67B001DDC81 /* Poovali */ = {
 			isa = PBXGroup;
 			children = (
+				AFD2474F1E6592CA007B8224 /* Assets.xcassets */,
 				AF7F43CC1E6080AF001FD060 /* infrastructure */,
 				AF843BFE1E5D565300EEEFC7 /* utility */,
 				AF843BF31E5C92C200EEEFC7 /* model */,
@@ -191,7 +192,6 @@
 				AFB69D8A1E5AF67B001DDC81 /* FirstViewController.swift */,
 				AFB69D8C1E5AF67B001DDC81 /* SecondViewController.swift */,
 				AFB69D8E1E5AF67B001DDC81 /* Main.storyboard */,
-				AFB69D911E5AF67B001DDC81 /* Assets.xcassets */,
 				AFB69D931E5AF67B001DDC81 /* LaunchScreen.storyboard */,
 				AFB69D961E5AF67B001DDC81 /* Info.plist */,
 				AF50D80A1E5AFD28002454FF /* Localizable.strings */,
@@ -327,9 +327,9 @@
 			files = (
 				AFB69D951E5AF67B001DDC81 /* LaunchScreen.storyboard in Resources */,
 				AF50D8081E5AFD28002454FF /* Localizable.strings in Resources */,
-				AFB69D921E5AF67B001DDC81 /* Assets.xcassets in Resources */,
 				AFB69D901E5AF67B001DDC81 /* Main.storyboard in Resources */,
 				AFD247471E6530FE007B8224 /* Localizable.stringsdict in Resources */,
+				AFD247501E6592CA007B8224 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
