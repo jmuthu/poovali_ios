@@ -26,5 +26,57 @@
                 <string>%d days overdue</string>
             </dict>
         </dict>
+        <key>duration_days</key>
+        <dict>
+            <key>NSStringLocalizedFormatKey</key>
+            <string>%#@days@</string>
+            <key>days</key>
+            <dict>
+                <key>NSStringFormatSpecTypeKey</key>
+                <string>NSStringPluralRuleType</string>
+                <key>NSStringFormatValueTypeKey</key>
+                <string>d</string>
+                <key>zero</key>
+                <string>0 days</string>
+                <key>one</key>
+                <string>1 day</string>
+                <key>other</key>
+                <string>%d days</string>
+            </dict>
+        </dict>
+        <key>sow_over_due</key>
+        <dict>
+            <key>NSStringLocalizedFormatKey</key>
+            <string>%#@days@</string>
+            <key>days</key>
+            <dict>
+                <key>NSStringFormatSpecTypeKey</key>
+                <string>NSStringPluralRuleType</string>
+                <key>NSStringFormatValueTypeKey</key>
+                <string>d</string>
+                <key>one</key>
+                <string>1 day overdue</string>
+                <key>other</key>
+                <string>%d days overdue</string>
+            </dict>
+        </dict>
+        <key>sow_next</key>
+        <dict>
+            <key>NSStringLocalizedFormatKey</key>
+            <string>%#@days@</string>
+            <key>days</key>
+            <dict>
+                <key>NSStringFormatSpecTypeKey</key>
+                <string>NSStringPluralRuleType</string>
+                <key>NSStringFormatValueTypeKey</key>
+                <string>d</string>
+                <key>zero</key>
+                <string>sow today</string>
+                <key>one</key>
+                <string>sow in 1 day</string>
+                <key>other</key>
+                <string>sow in %d days</string>
+            </dict>
+        </dict>
     </dict>
 </plist>

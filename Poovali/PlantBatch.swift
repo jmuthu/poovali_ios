@@ -68,7 +68,7 @@ class PlantBatch: NSObject, NSCoding {
         })
     }
 
-    func getProgress() -> Int {
+    func getProgressInPercent() -> Int {
         return getDurationInDays() * 100 / plant.getCropDuration()
     }
     

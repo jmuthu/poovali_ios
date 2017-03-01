@@ -10,12 +10,10 @@ import UIKit
 class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     @IBOutlet var tableView: UITableView!
-    let cellReuseIdentifier = "cell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -27,15 +25,43 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlantTableViewCell", for: indexPath) as? PlantTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of PlantTableViewCell.")
+        }
+        
         let plant = PlantRepository.findAll()[indexPath.row]
-        cell.textLabel?.text = plant.name
-        //let cellImg : UIImageView = UIImageView(frame: CGRect(x:0,y:0, width:40, height:40))
-        //cellImg.image = UIImage(named: plant.imageResourceId)
-        //cell.addSubview(cellImg)
-        cell.imageView?.image = UIImage(named:plant.imageResourceId)
-        //cell.imageView?.image!.draw(in:CGRect(x:0,y:0, width:24, height:24))
+        cell.nameLabel.text = plant.name
+        cell.contentLabel.text = String.localizedStringWithFormat(
+            NSLocalizedString("duration_days", comment: ""),
+            plant.getCropDuration())
+        
+        cell.plantTypeImageView.image = UIImage(named:plant.imageResourceId)
+        
+        if !plant.plantBatchList.isEmpty {
+            cell.nameLabel.text! += " (" + plant.plantBatchList.count.description + ")"
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            let plantBatch = plant.getLatestBatch()!
+            cell.lastBatchDateLabel.text  = String.localizedStringWithFormat(
+                NSLocalizedString("Last sowed", comment: ""),
+                dateFormatter.string(from: plantBatch.createdDate))
+            
+            setOverDueText(labelView:cell.nextBatchDueLabel, due:plant.pendingSowDays())
+        }
+        
         return cell
+    }
+    
+    func setOverDueText(labelView:UILabel, due:Int){
+        var format:String
+        if due > 0 {
+            labelView.textColor = UIColor.orange;
+            format = NSLocalizedString("sow_over_due", comment:"")
+        } else {
+            format = NSLocalizedString("sow_next", comment:"")
+        }
+        labelView.text = String.localizedStringWithFormat(format, abs(due))
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

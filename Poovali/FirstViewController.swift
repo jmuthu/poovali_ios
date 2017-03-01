@@ -7,39 +7,52 @@
 
 import UIKit
 
-class FirstViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
-
+class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet var tableView: UITableView!
-    let cellReuseIdentifier = "cell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         
         self.view.addSubview(tableView)
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return PlantBatchRepository.findAll().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlantBatchTableViewCell", for: indexPath) as? PlantBatchTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of PlantBatchTableViewCell.")
+        }
+        
         let plantBatch = PlantBatchRepository.findAll()[indexPath.row]
-        cell.textLabel?.text = plantBatch.name
-
-        cell.imageView?.image = UIImage(named:plantBatch.imageResourceId)
+        cell.nameLabel.text = plantBatch.name
+        cell.batchStatusLabel.text = String(describing: plantBatch.getStage())
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        cell.eventCreateDateLabel.text  = dateFormatter.string(from: plantBatch.latestEventCreatedDate)
+        if !plantBatch.eventList.isEmpty {
+            let event = plantBatch.eventList.first!
+            cell.eventDescriptionLabel.text = event.description.isEmpty ? event.getName(): event.description
+            cell.eventTypeImageView.image = UIImage(named:event.getImageResourceId())
+        } else {
+            cell.eventTypeImageView.image = UIImage(named:"sow")
+            cell.eventDescriptionLabel.text = NSLocalizedString("Sow", comment:"")
+        }
+        cell.circularProgressView.angle = Double(plantBatch.getProgressInPercent())*3.6
+        cell.plantTypeImageView.image = UIImage(named:plantBatch.imageResourceId)
         return cell
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
