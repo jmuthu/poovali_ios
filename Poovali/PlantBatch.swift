@@ -29,10 +29,6 @@ class PlantBatch: NSObject, NSCoding {
         return plant.name
     }
     
-    var imageResourceId:String {
-        return plant.imageResourceId
-    }
-    
     init(id:UInt32, name:String, plantId:UInt32, createdDate:Date,
          description:String) {
         self.id = id

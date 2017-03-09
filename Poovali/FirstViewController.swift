@@ -43,7 +43,13 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.eventDescriptionLabel.text = NSLocalizedString("Sow", comment:"")
         }
         cell.circularProgressView.angle = Double(plantBatch.getProgressInPercent())*3.6
-        cell.plantTypeImageView.image = UIImage(named:plantBatch.imageResourceId)
+        if plantBatch.plant.imageResourceId != nil {
+            cell.plantTypeImageView.image = UIImage(named:plantBatch.plant.imageResourceId!)
+        } else if plantBatch.plant.uiImage != nil {
+            cell.plantTypeImageView.image = plantBatch.plant.uiImage
+        } else {
+            cell.plantTypeImageView.image = UIImage(named:"plant")
+        }
         return cell
     }
     

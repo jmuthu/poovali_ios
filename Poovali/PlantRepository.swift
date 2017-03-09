@@ -90,6 +90,7 @@ class PlantRepository : FileRepository {
         return Plant(id:type.rawValue,
                      name:NSLocalizedString(name, comment:""),
                      imageResourceId: name.lowercased(),
+                     uiImage:nil,
                      seedling:seedling, flowering:flowering, fruiting:fruiting, ripening:ripening)
     }
     

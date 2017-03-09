@@ -20,12 +20,13 @@
 		AF843BFD1E5D4C7E00EEEFC7 /* BatchActivityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF843BFC1E5D4C7E00EEEFC7 /* BatchActivityEvent.swift */; };
 		AF843C001E5D9CCF00EEEFC7 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF843BFF1E5D9CCF00EEEFC7 /* DateExtensions.swift */; };
 		AF843C031E5DC45300EEEFC7 /* FileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF843C021E5DC45300EEEFC7 /* FileRepository.swift */; };
+		AF8829D81E6EB0FE0089BC34 /* PlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8829D71E6EB0FE0089BC34 /* PlantViewController.swift */; };
 		AFA340D21E6D399700B51BF5 /* PlantBatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA340D11E6D399700B51BF5 /* PlantBatchTableViewCell.swift */; };
 		AFA340D41E6DA0C300B51BF5 /* KDCIrcularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA340D31E6DA0C300B51BF5 /* KDCIrcularProgress.swift */; };
 		AFA340D61E6DE16500B51BF5 /* PlantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA340D51E6DE16500B51BF5 /* PlantTableViewCell.swift */; };
 		AFB69D891E5AF67B001DDC81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D881E5AF67B001DDC81 /* AppDelegate.swift */; };
 		AFB69D8B1E5AF67B001DDC81 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D8A1E5AF67B001DDC81 /* FirstViewController.swift */; };
-		AFB69D8D1E5AF67B001DDC81 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D8C1E5AF67B001DDC81 /* SecondViewController.swift */; };
+		AFB69D8D1E5AF67B001DDC81 /* PlantListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D8C1E5AF67B001DDC81 /* PlantListController.swift */; };
 		AFB69D901E5AF67B001DDC81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB69D8E1E5AF67B001DDC81 /* Main.storyboard */; };
 		AFB69D951E5AF67B001DDC81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB69D931E5AF67B001DDC81 /* LaunchScreen.storyboard */; };
 		AFB69DA01E5AF67B001DDC81 /* PoovaliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D9F1E5AF67B001DDC81 /* PoovaliTests.swift */; };
@@ -65,6 +66,7 @@
 		AF843BFC1E5D4C7E00EEEFC7 /* BatchActivityEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchActivityEvent.swift; sourceTree = "<group>"; };
 		AF843BFF1E5D9CCF00EEEFC7 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		AF843C021E5DC45300EEEFC7 /* FileRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRepository.swift; sourceTree = "<group>"; };
+		AF8829D71E6EB0FE0089BC34 /* PlantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantViewController.swift; sourceTree = "<group>"; };
 		AFA2946D1E6689430083C297 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		AFA340D11E6D399700B51BF5 /* PlantBatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantBatchTableViewCell.swift; sourceTree = "<group>"; };
 		AFA340D31E6DA0C300B51BF5 /* KDCIrcularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KDCIrcularProgress.swift; path = ../KDCIrcularProgress.swift; sourceTree = "<group>"; };
@@ -72,7 +74,7 @@
 		AFB69D851E5AF67B001DDC81 /* Poovali.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Poovali.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFB69D881E5AF67B001DDC81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFB69D8A1E5AF67B001DDC81 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		AFB69D8C1E5AF67B001DDC81 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		AFB69D8C1E5AF67B001DDC81 /* PlantListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantListController.swift; sourceTree = "<group>"; };
 		AFB69D8F1E5AF67B001DDC81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AFB69D941E5AF67B001DDC81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFB69D961E5AF67B001DDC81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				AF843BFF1E5D9CCF00EEEFC7 /* DateExtensions.swift */,
+				AFA340D31E6DA0C300B51BF5 /* KDCIrcularProgress.swift */,
 				AF7F43C21E600704001FD060 /* DictionaryExtension.swift */,
 			);
 			name = utility;
@@ -197,8 +200,8 @@
 				AF843BF31E5C92C200EEEFC7 /* model */,
 				AFB69D881E5AF67B001DDC81 /* AppDelegate.swift */,
 				AFB69D8A1E5AF67B001DDC81 /* FirstViewController.swift */,
-				AFA340D31E6DA0C300B51BF5 /* KDCIrcularProgress.swift */,
-				AFB69D8C1E5AF67B001DDC81 /* SecondViewController.swift */,
+				AF8829D71E6EB0FE0089BC34 /* PlantViewController.swift */,
+				AFB69D8C1E5AF67B001DDC81 /* PlantListController.swift */,
 				AFB69D8E1E5AF67B001DDC81 /* Main.storyboard */,
 				AFA340D51E6DE16500B51BF5 /* PlantTableViewCell.swift */,
 				AFA340D11E6D399700B51BF5 /* PlantBatchTableViewCell.swift */,
@@ -365,7 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF7F43C91E60679D001FD060 /* BatchEventFactory.swift in Sources */,
-				AFB69D8D1E5AF67B001DDC81 /* SecondViewController.swift in Sources */,
+				AFB69D8D1E5AF67B001DDC81 /* PlantListController.swift in Sources */,
 				AF50D8031E5AFC4F002454FF /* PlantRepository.swift in Sources */,
 				AF7F43C51E602D05001FD060 /* PlantBatchRepository.swift in Sources */,
 				AF843BF61E5D42AA00EEEFC7 /* PlantBatch.swift in Sources */,
@@ -377,6 +380,7 @@
 				AFB69D891E5AF67B001DDC81 /* AppDelegate.swift in Sources */,
 				AFA340D41E6DA0C300B51BF5 /* KDCIrcularProgress.swift in Sources */,
 				AF7F43CB1E60795A001FD060 /* Notification.swift in Sources */,
+				AF8829D81E6EB0FE0089BC34 /* PlantViewController.swift in Sources */,
 				AFA340D61E6DE16500B51BF5 /* PlantTableViewCell.swift in Sources */,
 				AFA340D21E6D399700B51BF5 /* PlantBatchTableViewCell.swift in Sources */,
 				AF843BFB1E5D4B8000EEEFC7 /* Event.swift in Sources */,

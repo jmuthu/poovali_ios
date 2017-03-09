@@ -6,20 +6,21 @@
 //
 
 import Foundation
+import UIKit
 
 class Plant: NSObject, NSCoding{
     
     var id:UInt32
     var name:String
-    var imageResourceId:String
-    //Storing uri as string as it is not serializable
-    //var imageUri:String
+    var imageResourceId:String?
+    var uiImage:UIImage?
     var growthStageMap = [GrowthStage:Int]()
     var plantBatchList = [PlantBatch]();
     
     init( id:UInt32,
           name:String,
-          imageResourceId:String,
+          imageResourceId:String?,
+          uiImage:UIImage?,
           seedling:Int,
           flowering:Int,
           fruiting:Int,
@@ -27,6 +28,7 @@ class Plant: NSObject, NSCoding{
         self.id = id
         self.name = name
         self.imageResourceId = imageResourceId
+        self.uiImage = uiImage
         
         self.growthStageMap[GrowthStage.Seedling] = seedling
         self.growthStageMap[GrowthStage.Flowering] = flowering
@@ -36,11 +38,13 @@ class Plant: NSObject, NSCoding{
     
     init (id:UInt32,
           name:String,
-          imageResourceId:String,
+          imageResourceId:String?,
+          uiImage:UIImage?,
           growthStageMap:[GrowthStage:Int]) {
         self.id = id
         self.name = name
         self.imageResourceId = imageResourceId
+        self.uiImage = uiImage
         self.growthStageMap = growthStageMap
     }
     
@@ -48,6 +52,7 @@ class Plant: NSObject, NSCoding{
         coder.encode(id, forKey: "id")
         coder.encode(name, forKey: "name")
         coder.encode(imageResourceId, forKey: "imageResourceId")
+        coder.encode(uiImage, forKey: "uiImage")
         let growthStageStrings:[Int:Int] = growthStageMap.mapPairs { (key, value) in (key.rawValue , value) }
         coder.encode(growthStageStrings, forKey: "growthStageMap")
     }
@@ -55,10 +60,11 @@ class Plant: NSObject, NSCoding{
     required convenience init(coder decoder: NSCoder) {
         let id = decoder.decodeObject(forKey: "id") as! UInt32
         let name = decoder.decodeObject(forKey: "name") as! String
-        let imageResourceId = decoder.decodeObject(forKey: "imageResourceId") as! String
+        let imageResourceId = decoder.decodeObject(forKey: "imageResourceId") as! String?
         let growthStageInt = decoder.decodeObject(forKey: "growthStageMap") as! [Int:Int]
+        let uiImage = decoder.decodeObject(forKey: "uiImage") as! UIImage?
         let growthStageMap = growthStageInt.mapPairs{(key, value) in (GrowthStage(rawValue: key)! , value)}
-        self.init(id:id, name:name, imageResourceId:imageResourceId, growthStageMap:growthStageMap)
+        self.init(id:id, name:name, imageResourceId:imageResourceId, uiImage:uiImage, growthStageMap:growthStageMap)
     }
     
     func getCropDuration() -> Int {
