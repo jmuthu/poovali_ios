@@ -10,6 +10,7 @@
 		AF50D8021E5AFC4F002454FF /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50D7FB1E5AFC4F002454FF /* Plant.swift */; };
 		AF50D8031E5AFC4F002454FF /* PlantRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50D7FC1E5AFC4F002454FF /* PlantRepository.swift */; };
 		AF50D8081E5AFD28002454FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AF50D80A1E5AFD28002454FF /* Localizable.strings */; };
+		AF5118FA1E7277430094DB42 /* PlantBatchEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5118F91E7277430094DB42 /* PlantBatchEditViewController.swift */; };
 		AF7F43C31E600704001FD060 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7F43C21E600704001FD060 /* DictionaryExtension.swift */; };
 		AF7F43C51E602D05001FD060 /* PlantBatchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7F43C41E602D05001FD060 /* PlantBatchRepository.swift */; };
 		AF7F43C71E606479001FD060 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7F43C61E606479001FD060 /* EventRepository.swift */; };
@@ -25,7 +26,7 @@
 		AFA340D41E6DA0C300B51BF5 /* KDCIrcularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA340D31E6DA0C300B51BF5 /* KDCIrcularProgress.swift */; };
 		AFA340D61E6DE16500B51BF5 /* PlantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA340D51E6DE16500B51BF5 /* PlantTableViewCell.swift */; };
 		AFB69D891E5AF67B001DDC81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D881E5AF67B001DDC81 /* AppDelegate.swift */; };
-		AFB69D8B1E5AF67B001DDC81 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D8A1E5AF67B001DDC81 /* FirstViewController.swift */; };
+		AFB69D8B1E5AF67B001DDC81 /* PlantBatchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D8A1E5AF67B001DDC81 /* PlantBatchListController.swift */; };
 		AFB69D8D1E5AF67B001DDC81 /* PlantListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB69D8C1E5AF67B001DDC81 /* PlantListController.swift */; };
 		AFB69D901E5AF67B001DDC81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB69D8E1E5AF67B001DDC81 /* Main.storyboard */; };
 		AFB69D951E5AF67B001DDC81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB69D931E5AF67B001DDC81 /* LaunchScreen.storyboard */; };
@@ -56,6 +57,7 @@
 		AF50D7FB1E5AFC4F002454FF /* Plant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		AF50D7FC1E5AFC4F002454FF /* PlantRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantRepository.swift; sourceTree = "<group>"; };
 		AF50D8091E5AFD28002454FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AF5118F91E7277430094DB42 /* PlantBatchEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantBatchEditViewController.swift; sourceTree = "<group>"; };
 		AF7F43C21E600704001FD060 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		AF7F43C41E602D05001FD060 /* PlantBatchRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantBatchRepository.swift; sourceTree = "<group>"; };
 		AF7F43C61E606479001FD060 /* EventRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
@@ -73,7 +75,7 @@
 		AFA340D51E6DE16500B51BF5 /* PlantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantTableViewCell.swift; sourceTree = "<group>"; };
 		AFB69D851E5AF67B001DDC81 /* Poovali.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Poovali.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFB69D881E5AF67B001DDC81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AFB69D8A1E5AF67B001DDC81 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		AFB69D8A1E5AF67B001DDC81 /* PlantBatchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantBatchListController.swift; sourceTree = "<group>"; };
 		AFB69D8C1E5AF67B001DDC81 /* PlantListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantListController.swift; sourceTree = "<group>"; };
 		AFB69D8F1E5AF67B001DDC81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AFB69D941E5AF67B001DDC81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -199,8 +201,9 @@
 				AF843BFE1E5D565300EEEFC7 /* utility */,
 				AF843BF31E5C92C200EEEFC7 /* model */,
 				AFB69D881E5AF67B001DDC81 /* AppDelegate.swift */,
-				AFB69D8A1E5AF67B001DDC81 /* FirstViewController.swift */,
+				AFB69D8A1E5AF67B001DDC81 /* PlantBatchListController.swift */,
 				AF8829D71E6EB0FE0089BC34 /* PlantViewController.swift */,
+				AF5118F91E7277430094DB42 /* PlantBatchEditViewController.swift */,
 				AFB69D8C1E5AF67B001DDC81 /* PlantListController.swift */,
 				AFB69D8E1E5AF67B001DDC81 /* Main.storyboard */,
 				AFA340D51E6DE16500B51BF5 /* PlantTableViewCell.swift */,
@@ -382,9 +385,10 @@
 				AF7F43CB1E60795A001FD060 /* Notification.swift in Sources */,
 				AF8829D81E6EB0FE0089BC34 /* PlantViewController.swift in Sources */,
 				AFA340D61E6DE16500B51BF5 /* PlantTableViewCell.swift in Sources */,
+				AF5118FA1E7277430094DB42 /* PlantBatchEditViewController.swift in Sources */,
 				AFA340D21E6D399700B51BF5 /* PlantBatchTableViewCell.swift in Sources */,
 				AF843BFB1E5D4B8000EEEFC7 /* Event.swift in Sources */,
-				AFB69D8B1E5AF67B001DDC81 /* FirstViewController.swift in Sources */,
+				AFB69D8B1E5AF67B001DDC81 /* PlantBatchListController.swift in Sources */,
 				AF843C031E5DC45300EEEFC7 /* FileRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

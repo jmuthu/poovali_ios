@@ -10,158 +10,235 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Recent batches-->
-        <scene sceneID="hNz-n2-bh7">
+        <!--Recent Batches-->
+        <scene sceneID="BrE-8P-fkh">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="Poovali" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="4Hl-5F-Swl" userLabel="Recent Batches" customClass="PlantBatchListController" customModule="Poovali" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" id="AJy-L5-YKO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlantBatchTableViewCell" rowHeight="72" id="cfF-jO-5cf" customClass="PlantBatchTableViewCell" customModule="Poovali" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cfF-jO-5cf" id="Q24-bM-Dif">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_plant" translatesAutoresizingMaskIntoConstraints="NO" id="w8p-bw-Rdd" userLabel="plant_type_icon">
+                                            <rect key="frame" x="20" y="20" width="32" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="32" id="UDF-dk-Jet"/>
+                                                <constraint firstAttribute="width" constant="32" id="liG-x0-d3P"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uab-Dx-kgB" userLabel="name">
+                                            <rect key="frame" x="72" y="20" width="39.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5X-SL-mAL" userLabel="event_description">
+                                            <rect key="frame" x="94" y="41.5" width="31" height="14.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ey-cH-yTP" userLabel="event_created_date">
+                                            <rect key="frame" x="336" y="41.5" width="31" height="14.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jqk-db-hCK" userLabel="event_type_icon">
+                                            <rect key="frame" x="72" y="41.5" width="14" height="14"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="14" id="9Bt-aJ-lfh"/>
+                                                <constraint firstAttribute="width" constant="14" id="fpm-c4-3RZ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hw0-rL-JRY" customClass="KDCircularProgress" customModule="Poovali" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="8" width="56" height="56"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="56" id="cve-Su-bx0"/>
+                                                <constraint firstAttribute="width" constant="56" id="uPW-kO-HY8"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                                    <real key="value" value="-90"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="trackThickness">
+                                                    <real key="value" value="0.20000000000000001"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                                    <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="IBColor1">
+                                                    <color key="value" red="0.33333333329999998" green="0.5450980392" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="progressThickness">
+                                                    <real key="value" value="0.10000000000000001"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                    <real key="value" value="90"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVw-M3-X6T" userLabel="batch_status">
+                                            <rect key="frame" x="334" y="23.5" width="33" height="16"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="2ey-cH-yTP" secondAttribute="trailing" constant="8" id="44v-SV-vf0"/>
+                                        <constraint firstItem="jqk-db-hCK" firstAttribute="top" secondItem="Uab-Dx-kgB" secondAttribute="bottom" constant="2" id="FFB-ne-vaF"/>
+                                        <constraint firstItem="jqk-db-hCK" firstAttribute="leading" secondItem="Uab-Dx-kgB" secondAttribute="leading" id="GVX-uT-LoD"/>
+                                        <constraint firstItem="2ey-cH-yTP" firstAttribute="bottom" secondItem="j5X-SL-mAL" secondAttribute="bottom" id="X75-em-Bm9"/>
+                                        <constraint firstItem="ZVw-M3-X6T" firstAttribute="bottom" secondItem="Uab-Dx-kgB" secondAttribute="bottom" id="alX-iJ-SwX"/>
+                                        <constraint firstItem="j5X-SL-mAL" firstAttribute="leading" secondItem="jqk-db-hCK" secondAttribute="trailing" constant="8" id="d9A-a7-h17"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZVw-M3-X6T" secondAttribute="trailing" constant="8" id="h3g-hc-5c5"/>
+                                        <constraint firstItem="w8p-bw-Rdd" firstAttribute="top" secondItem="Uab-Dx-kgB" secondAttribute="top" id="h66-WD-H2t"/>
+                                        <constraint firstItem="w8p-bw-Rdd" firstAttribute="centerY" secondItem="Q24-bM-Dif" secondAttribute="centerY" id="iTs-YJ-FqJ"/>
+                                        <constraint firstItem="hw0-rL-JRY" firstAttribute="leading" secondItem="Q24-bM-Dif" secondAttribute="leading" constant="8" id="ivM-EU-HiF"/>
+                                        <constraint firstItem="w8p-bw-Rdd" firstAttribute="leading" secondItem="Q24-bM-Dif" secondAttribute="leadingMargin" constant="12" id="njD-ma-mHl"/>
+                                        <constraint firstItem="j5X-SL-mAL" firstAttribute="top" secondItem="jqk-db-hCK" secondAttribute="top" id="nu0-BV-4o4"/>
+                                        <constraint firstItem="Uab-Dx-kgB" firstAttribute="leading" secondItem="Q24-bM-Dif" secondAttribute="leading" constant="72" id="skw-ao-lJx"/>
+                                        <constraint firstItem="hw0-rL-JRY" firstAttribute="centerY" secondItem="Q24-bM-Dif" secondAttribute="centerY" id="t2v-Ft-A0n"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="72" minY="0.0" maxX="10" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="batchStatusLabel" destination="ZVw-M3-X6T" id="5T6-bQ-ubc"/>
+                                    <outlet property="circularProgressView" destination="hw0-rL-JRY" id="wgw-0k-ZZd"/>
+                                    <outlet property="eventCreateDateLabel" destination="2ey-cH-yTP" id="axf-9n-pVc"/>
+                                    <outlet property="eventDescriptionLabel" destination="j5X-SL-mAL" id="UAu-pA-TTb"/>
+                                    <outlet property="eventTypeImageView" destination="jqk-db-hCK" id="cmv-EB-jz6"/>
+                                    <outlet property="nameLabel" destination="Uab-Dx-kgB" id="Bvn-km-u3z"/>
+                                    <outlet property="plantTypeImageView" destination="w8p-bw-Rdd" id="x82-tT-iFd"/>
+                                    <segue destination="Bd3-tp-VQe" kind="show" identifier="ShowDetail" id="CQD-HN-hYT"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4Hl-5F-Swl" id="G4u-gE-pjJ"/>
+                            <outlet property="delegate" destination="4Hl-5F-Swl" id="8Z1-cD-dbF"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Recent batches" id="HiJ-2T-jp7">
+                        <barButtonItem key="rightBarButtonItem" image="seeds_24dp" id="lOP-Dp-dIK">
+                            <connections>
+                                <segue destination="TXK-Iq-T1x" kind="presentation" identifier="AddPlantBatch" id="UR4-Fk-WVq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vlc-pL-YW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="961" y="-392"/>
+        </scene>
+        <!--Plant Batch View-->
+        <scene sceneID="mdX-2l-hZZ">
+            <objects>
+                <viewController id="Bd3-tp-VQe" userLabel="Plant Batch View" customClass="PlantBatchEditViewController" customModule="Poovali" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
-                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
+                        <viewControllerLayoutGuide type="top" id="duP-AS-jFi"/>
+                        <viewControllerLayoutGuide type="bottom" id="rGh-sy-6P8"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                    <view key="view" contentMode="scaleToFill" id="b44-FF-yag">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ZJ7-hQ-oTh">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New batch for" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agw-Zc-P8U">
+                                <rect key="frame" x="16" y="80" width="97" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="left" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LCf-f6-YuF" userLabel="Plant list">
+                                <rect key="frame" x="16" y="106" width="145" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="2QJ-Hj-5Dd"/>
+                                    <constraint firstAttribute="height" constant="100" id="1NS-O6-ZCr"/>
+                                    <constraint firstAttribute="width" constant="200" id="Fk5-73-iZi"/>
                                 </constraints>
-                                <items>
-                                    <navigationItem title="Recent batches" id="HiJ-2T-jp7">
-                                        <barButtonItem key="rightBarButtonItem" image="seeds_24dp" id="lOP-Dp-dIK"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S04-6D-cls">
-                                <rect key="frame" x="0.0" y="64" width="375" height="537"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UM8-CJ-gfQ">
+                                <rect key="frame" x="16" y="222" width="76" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="sz3-kK-jCf" userLabel="Created Date">
+                                <rect key="frame" x="16" y="248" width="343" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="cOo-gX-jFx"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="510772019.41857803">
+                                    <!--2017-03-09 17:06:59 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQK-PI-Nxk">
+                                <rect key="frame" x="16" y="364" width="41" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="FRK-oB-37w" userLabel="Description">
+                                <rect key="frame" x="16" y="390" width="343" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlantBatchTableViewCell" rowHeight="72" id="cfF-jO-5cf" customClass="PlantBatchTableViewCell" customModule="Poovali" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="72"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cfF-jO-5cf" id="Q24-bM-Dif">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_plant" translatesAutoresizingMaskIntoConstraints="NO" id="w8p-bw-Rdd" userLabel="plant_type_icon">
-                                                    <rect key="frame" x="20" y="20" width="32" height="32"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="UDF-dk-Jet"/>
-                                                        <constraint firstAttribute="width" constant="32" id="liG-x0-d3P"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uab-Dx-kgB" userLabel="name">
-                                                    <rect key="frame" x="72" y="20" width="39.5" height="19.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5X-SL-mAL" userLabel="event_description">
-                                                    <rect key="frame" x="94" y="41.5" width="31" height="14.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ey-cH-yTP" userLabel="event_created_date">
-                                                    <rect key="frame" x="336" y="41.5" width="31" height="14.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jqk-db-hCK" userLabel="event_type_icon">
-                                                    <rect key="frame" x="72" y="41.5" width="14" height="14"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="9Bt-aJ-lfh"/>
-                                                        <constraint firstAttribute="width" constant="14" id="fpm-c4-3RZ"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hw0-rL-JRY" customClass="KDCircularProgress" customModule="Poovali" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="8" width="56" height="56"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="cve-Su-bx0"/>
-                                                        <constraint firstAttribute="width" constant="56" id="uPW-kO-HY8"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
-                                                            <real key="value" value="-90"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="trackThickness">
-                                                            <real key="value" value="0.20000000000000001"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
-                                                            <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="IBColor1">
-                                                            <color key="value" red="0.33333333329999998" green="0.5450980392" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="progressThickness">
-                                                            <real key="value" value="0.10000000000000001"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="angle">
-                                                            <real key="value" value="90"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVw-M3-X6T" userLabel="batch_status">
-                                                    <rect key="frame" x="334" y="23.5" width="33" height="16"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="2ey-cH-yTP" secondAttribute="trailing" constant="8" id="44v-SV-vf0"/>
-                                                <constraint firstItem="jqk-db-hCK" firstAttribute="top" secondItem="Uab-Dx-kgB" secondAttribute="bottom" constant="2" id="FFB-ne-vaF"/>
-                                                <constraint firstItem="jqk-db-hCK" firstAttribute="leading" secondItem="Uab-Dx-kgB" secondAttribute="leading" id="GVX-uT-LoD"/>
-                                                <constraint firstItem="2ey-cH-yTP" firstAttribute="bottom" secondItem="j5X-SL-mAL" secondAttribute="bottom" id="X75-em-Bm9"/>
-                                                <constraint firstItem="ZVw-M3-X6T" firstAttribute="bottom" secondItem="Uab-Dx-kgB" secondAttribute="bottom" id="alX-iJ-SwX"/>
-                                                <constraint firstItem="j5X-SL-mAL" firstAttribute="leading" secondItem="jqk-db-hCK" secondAttribute="trailing" constant="8" id="d9A-a7-h17"/>
-                                                <constraint firstAttribute="trailing" secondItem="ZVw-M3-X6T" secondAttribute="trailing" constant="8" id="h3g-hc-5c5"/>
-                                                <constraint firstItem="w8p-bw-Rdd" firstAttribute="top" secondItem="Uab-Dx-kgB" secondAttribute="top" id="h66-WD-H2t"/>
-                                                <constraint firstItem="w8p-bw-Rdd" firstAttribute="centerY" secondItem="Q24-bM-Dif" secondAttribute="centerY" id="iTs-YJ-FqJ"/>
-                                                <constraint firstItem="hw0-rL-JRY" firstAttribute="leading" secondItem="Q24-bM-Dif" secondAttribute="leading" constant="8" id="ivM-EU-HiF"/>
-                                                <constraint firstItem="w8p-bw-Rdd" firstAttribute="leading" secondItem="Q24-bM-Dif" secondAttribute="leadingMargin" constant="12" id="njD-ma-mHl"/>
-                                                <constraint firstItem="j5X-SL-mAL" firstAttribute="top" secondItem="jqk-db-hCK" secondAttribute="top" id="nu0-BV-4o4"/>
-                                                <constraint firstItem="Uab-Dx-kgB" firstAttribute="leading" secondItem="Q24-bM-Dif" secondAttribute="leading" constant="72" id="skw-ao-lJx"/>
-                                                <constraint firstItem="hw0-rL-JRY" firstAttribute="centerY" secondItem="Q24-bM-Dif" secondAttribute="centerY" id="t2v-Ft-A0n"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="72" minY="0.0" maxX="10" maxY="0.0"/>
-                                        <connections>
-                                            <outlet property="batchStatusLabel" destination="ZVw-M3-X6T" id="5T6-bQ-ubc"/>
-                                            <outlet property="circularProgressView" destination="hw0-rL-JRY" id="wgw-0k-ZZd"/>
-                                            <outlet property="eventCreateDateLabel" destination="2ey-cH-yTP" id="axf-9n-pVc"/>
-                                            <outlet property="eventDescriptionLabel" destination="j5X-SL-mAL" id="UAu-pA-TTb"/>
-                                            <outlet property="eventTypeImageView" destination="jqk-db-hCK" id="cmv-EB-jz6"/>
-                                            <outlet property="nameLabel" destination="Uab-Dx-kgB" id="Bvn-km-u3z"/>
-                                            <outlet property="plantTypeImageView" destination="w8p-bw-Rdd" id="x82-tT-iFd"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="eCJ-sn-zFu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="S04-6D-cls" secondAttribute="bottom" constant="17" id="8Ch-wH-Vx4"/>
-                            <constraint firstAttribute="trailing" secondItem="ZJ7-hQ-oTh" secondAttribute="trailing" id="GwZ-bl-rhQ"/>
-                            <constraint firstItem="ZJ7-hQ-oTh" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="T2e-93-dtM"/>
-                            <constraint firstItem="S04-6D-cls" firstAttribute="top" secondItem="ZJ7-hQ-oTh" secondAttribute="bottom" id="a0W-PJ-piC"/>
-                            <constraint firstItem="S04-6D-cls" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="aIl-6z-ojk"/>
-                            <constraint firstAttribute="trailing" secondItem="S04-6D-cls" secondAttribute="trailing" id="ebJ-Ng-yzd"/>
-                            <constraint firstItem="ZJ7-hQ-oTh" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="qgZ-Ny-n5n"/>
+                            <constraint firstAttribute="trailing" secondItem="sz3-kK-jCf" secondAttribute="trailing" constant="16" id="2w7-rF-bDQ"/>
+                            <constraint firstItem="sz3-kK-jCf" firstAttribute="top" secondItem="UM8-CJ-gfQ" secondAttribute="bottom" constant="8" id="C5B-Pc-hgg"/>
+                            <constraint firstItem="Agw-Zc-P8U" firstAttribute="leading" secondItem="b44-FF-yag" secondAttribute="leading" constant="16" id="L0Q-cJ-5vG"/>
+                            <constraint firstItem="Agw-Zc-P8U" firstAttribute="top" secondItem="duP-AS-jFi" secondAttribute="bottom" constant="16" id="P1k-VB-cJp"/>
+                            <constraint firstItem="tQK-PI-Nxk" firstAttribute="top" secondItem="sz3-kK-jCf" secondAttribute="bottom" constant="16" id="PIF-2T-NDq"/>
+                            <constraint firstItem="FRK-oB-37w" firstAttribute="top" secondItem="tQK-PI-Nxk" secondAttribute="bottom" constant="8" id="QNN-K8-p9k"/>
+                            <constraint firstItem="sz3-kK-jCf" firstAttribute="leading" secondItem="UM8-CJ-gfQ" secondAttribute="leading" id="anr-30-4k8"/>
+                            <constraint firstItem="FRK-oB-37w" firstAttribute="leading" secondItem="tQK-PI-Nxk" secondAttribute="leading" id="b4g-zp-huK"/>
+                            <constraint firstItem="UM8-CJ-gfQ" firstAttribute="leading" secondItem="b44-FF-yag" secondAttribute="leading" constant="16" id="fET-7y-pM2"/>
+                            <constraint firstItem="tQK-PI-Nxk" firstAttribute="leading" secondItem="UM8-CJ-gfQ" secondAttribute="leading" id="fU2-Fx-XCS"/>
+                            <constraint firstItem="UM8-CJ-gfQ" firstAttribute="top" secondItem="duP-AS-jFi" secondAttribute="bottom" priority="250" constant="16" id="fjI-wv-sUb"/>
+                            <constraint firstItem="UM8-CJ-gfQ" firstAttribute="top" secondItem="LCf-f6-YuF" secondAttribute="bottom" constant="16" id="gol-Xa-WeP"/>
+                            <constraint firstItem="LCf-f6-YuF" firstAttribute="top" secondItem="Agw-Zc-P8U" secondAttribute="bottom" constant="8" id="mj0-o3-BZd"/>
+                            <constraint firstItem="LCf-f6-YuF" firstAttribute="leading" secondItem="Agw-Zc-P8U" secondAttribute="leading" id="n43-9Z-4Ld"/>
+                            <constraint firstAttribute="trailing" secondItem="FRK-oB-37w" secondAttribute="trailing" constant="16" id="rTv-Fj-skL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Recent batches" image="history" id="acW-dT-cKf" userLabel="Plant Batches"/>
+                    <navigationItem key="navigationItem" title="Add Plant Batch" id="1Te-Jm-1cT">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="dmJ-9W-Vlr">
+                            <connections>
+                                <action selector="cancel:" destination="Bd3-tp-VQe" id="z31-Sa-IpM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4Fv-Dz-aGE">
+                            <connections>
+                                <segue destination="W8u-hP-GgW" kind="unwind" unwindAction="unwindToPlantBatchListWithSender:" id="4fa-0K-mIf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="S04-6D-cls" id="qpv-NV-cGX"/>
+                        <outlet property="createdDatePicker" destination="sz3-kK-jCf" id="SlE-gs-8je"/>
+                        <outlet property="notesTextView" destination="FRK-oB-37w" id="WzK-RG-bna"/>
+                        <outlet property="plantBatchLabel" destination="Agw-Zc-P8U" id="cE5-9j-QcE"/>
+                        <outlet property="plantListPickerView" destination="LCf-f6-YuF" id="lAO-2j-TIP"/>
+                        <outlet property="saveButton" destination="4Fv-Dz-aGE" id="Y9J-gk-5Hh"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jMT-TS-sDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="W8u-hP-GgW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="-330.58470764617692"/>
+            <point key="canvasLocation" x="2533.5999999999999" y="-393.55322338830587"/>
         </scene>
         <!--Plant View-->
         <scene sceneID="Sh4-Bx-ySA">
@@ -327,7 +404,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3714" y="331"/>
+            <point key="canvasLocation" x="2534" y="403"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -341,13 +418,13 @@
                         <color key="selectedImageTintColor" red="0.33333333329999998" green="0.5450980392" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="bs6-vw-zzT" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="b5y-qA-pn0" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-513" y="-24"/>
         </scene>
         <!--Plant Navigation-->
         <scene sceneID="gtV-ZC-zub">
@@ -355,7 +432,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b5y-qA-pn0" userLabel="Plant Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Plant" image="plant" id="cPa-gy-q4n" userLabel="Plant"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="drT-MX-Foy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="drT-MX-Foy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -366,7 +443,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQ6-24-MAj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="330.58470764617692"/>
+            <point key="canvasLocation" x="268" y="413"/>
         </scene>
         <!--Plants List-->
         <scene sceneID="2ys-Jr-Kuy">
@@ -381,7 +458,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FA9-Ab-4mr" id="J93-qI-n2h">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_plant" translatesAutoresizingMaskIntoConstraints="NO" id="bG4-Bk-56n" userLabel="plant_type_icon">
@@ -455,14 +532,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ml-sw-7Vc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1695" y="331"/>
+            <point key="canvasLocation" x="961" y="403"/>
         </scene>
         <!--Add Plant Navigation Controller-->
         <scene sceneID="tAp-Gi-2aH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lfl-Ti-AZ0" userLabel="Add Plant Navigation Controller" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w3Q-E5-sSZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="w3Q-E5-sSZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -473,7 +550,44 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dnv-jF-hWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2727" y="679"/>
+            <point key="canvasLocation" x="1740" y="765"/>
+        </scene>
+        <!-- Recent batches navigation-->
+        <scene sceneID="s4M-rR-FEH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bs6-vw-zzT" userLabel=" Recent batches navigation" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Recent batches" image="history" id="acW-dT-cKf" userLabel="Plant Batches"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2UV-uF-ury">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4Hl-5F-Swl" kind="relationship" relationship="rootViewController" id="e8k-O9-kgk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3tZ-hr-lQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="268" y="-376"/>
+        </scene>
+        <!--Add Plant Batch Navigation Controller-->
+        <scene sceneID="Tle-om-KtG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TXK-Iq-T1x" userLabel="Add Plant Batch Navigation Controller" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kMR-om-ggV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Bd3-tp-VQe" kind="relationship" relationship="rootViewController" id="8dQ-v4-Nhe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eUb-dz-vkP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1740" y="-25"/>
         </scene>
     </scenes>
     <resources>
@@ -485,6 +599,7 @@
         <image name="seeds_24dp" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="CQD-HN-hYT"/>
         <segue reference="eNp-v4-eEd"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33333333329999998" green="0.5450980392" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
