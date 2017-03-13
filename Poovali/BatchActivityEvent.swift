@@ -19,7 +19,7 @@ class BatchActivityEvent :Event {
     }
     
     override func getImageResourceId() -> String {
-        return getName();
+        return String(describing: type).lowercased();
     }
  
     enum ActivityType:UInt8 {
@@ -32,5 +32,21 @@ class BatchActivityEvent :Event {
         case PRUNE = 6
         case REPLANT = 7
         case WATER = 8
+        
+        static let allValues = 	[DEWEED, FERTILIZER, HARVEST, MICRO_NUTRIENTS, MULCH, PESTICIDE, PRUNE, REPLANT, WATER]
+    }
+    
+    override func encode(with coder: NSCoder) {
+        super.encode(with:coder)
+        coder.encode(type.rawValue, forKey:"type")
+    }
+    
+    required convenience init(coder decoder: NSCoder) {
+        let id = decoder.decodeObject(forKey: "id") as! UInt32
+        let description = decoder.decodeObject(forKey: "description") as! String
+        let batchId = decoder.decodeObject(forKey:"batchId") as! UInt32
+        let createdDate = decoder.decodeObject(forKey:"createdDate") as! Date
+        let type = ActivityType(rawValue: decoder.decodeObject(forKey: "type") as! UInt8)
+        self.init(id:id, type:type!, createdDate:createdDate, description:description, batchId:batchId)
     }
 }

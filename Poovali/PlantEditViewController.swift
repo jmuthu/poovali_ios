@@ -1,15 +1,14 @@
 //
-//  PlantViewController.swift
+//  PlantEditViewController.swift
 //  Poovali
 //
-//  Created by anbu on 07/03/17.
 //  Copyright © 2017 Joseph Muthu. All rights reserved.
 //
 
 import UIKit
 import os.log
 
-class PlantViewController: UIViewController,  UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class PlantEditViewController: UIViewController,  UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     //MARK: Properties
     
     @IBOutlet weak var plantImageView: UIImageView!
@@ -30,6 +29,8 @@ class PlantViewController: UIViewController,  UITextFieldDelegate, UIImagePicker
         fruitingText.delegate = self
         floweringText.delegate = self
         seedlingText.delegate = self
+        plantNameText.addTarget(self, action: #selector(plantNameChanged(_:)), for: .editingChanged)
+        ripeningText.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         
         // Set up views if editing an existing plant.
         if let plant = plant {
@@ -51,9 +52,9 @@ class PlantViewController: UIViewController,  UITextFieldDelegate, UIImagePicker
     
     //MARK: UITextFieldDelegate
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        // Disable the Save button while editing.
-        //saveButton.isEnabled = false
+    func plantNameChanged(_ textField: UITextField) {
+        duplicateCheck()
+        updateSaveButtonState()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -62,14 +63,8 @@ class PlantViewController: UIViewController,  UITextFieldDelegate, UIImagePicker
         return true
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textChanged(_ textField: UITextField) {
         updateSaveButtonState()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        updateSaveButtonState()
-        //navigationItem.title = textField.text
     }
     
     //MARK: UIImagePickerControllerDelegate
@@ -95,6 +90,23 @@ class PlantViewController: UIViewController,  UITextFieldDelegate, UIImagePicker
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func duplicateCheck() {
+        let dupPlant = PlantRepository.findByName(name: plantNameText.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
+        if dupPlant != nil && !(dupPlant?.sameIdentityAs(other: plant))! {
+            let alertController = UIAlertController(title: "", message: NSLocalizedString("Duplicate plant", comment:""), preferredStyle: UIAlertControllerStyle.alert)
+            
+            let okAction = UIAlertAction(title: NSLocalizedString("OK", comment:""), style: UIAlertActionStyle.default)
+            {
+                (action : UIAlertAction) -> Void in
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            saveButton.isEnabled = false
+        } else {
+            saveButton.isEnabled = true
+        }
     }
     
     // MARK: - Navigation
@@ -163,7 +175,7 @@ class PlantViewController: UIViewController,  UITextFieldDelegate, UIImagePicker
     
     //MARK: Private Methods
     
-    private func updateSaveButtonState() {
+    func updateSaveButtonState() {
         saveButton.isEnabled = !(plantNameText.text!.isEmpty || ripeningText.text!.isEmpty || fruitingText.text!.isEmpty || floweringText.text!.isEmpty || seedlingText.text!.isEmpty)
     }
 }

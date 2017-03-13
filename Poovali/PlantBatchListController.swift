@@ -20,6 +20,11 @@ class PlantBatchListController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     //MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -38,14 +43,15 @@ class PlantBatchListController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            PlantBatchRepository.delete(plantBatch:PlantBatchRepository.findAll()[indexPath.row])
+            let plantBatch = PlantBatchRepository.findAll()[indexPath.row]
+            plantBatch.plant.deleteBatch(plantBatch: plantBatch)
+            PlantBatchRepository.delete(plantBatch:plantBatch)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
     
-    //MARK: - Navigation
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlantBatchTableViewCell", for: indexPath) as? PlantBatchTableViewCell  else {
             fatalError("The dequeued cell is not an instance of PlantBatchTableViewCell.")
@@ -59,7 +65,7 @@ class PlantBatchListController: UITableViewController {
         cell.eventCreateDateLabel.text  = dateFormatter.string(from: plantBatch.latestEventCreatedDate)
         if !plantBatch.eventList.isEmpty {
             let event = plantBatch.eventList.first!
-            cell.eventDescriptionLabel.text = event.description.isEmpty ? event.getName(): event.description
+            cell.eventDescriptionLabel.text = event.desc.isEmpty ? event.getName(): event.desc
             cell.eventTypeImageView.image = UIImage(named:event.getImageResourceId())
         } else {
             cell.eventTypeImageView.image = UIImage(named:"sow")
@@ -88,7 +94,7 @@ class PlantBatchListController: UITableViewController {
             os_log("Adding a new plant batch.", log: OSLog.default, type: .debug)
             
         case "ShowDetail":
-            guard let plantBatchEditViewController = segue.destination as? PlantBatchEditViewController else {
+            guard let plantBatchDetailViewController = segue.destination as? PlantBatchDetailViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
@@ -100,7 +106,7 @@ class PlantBatchListController: UITableViewController {
                 fatalError("The selected cell is not being displayed by the table")
             }
             
-            plantBatchEditViewController.plantBatch = PlantBatchRepository.findAll()[indexPath.row]
+            plantBatchDetailViewController.plantBatch = PlantBatchRepository.findAll()[indexPath.row]
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
@@ -109,12 +115,19 @@ class PlantBatchListController: UITableViewController {
 
     //MARK: Actions
     
-    @IBAction func unwindToPlantBatchList(sender: UIStoryboardSegue) {
+    @IBAction func savePlantBatch(sender: UIStoryboardSegue) {
         
         if let sourceViewController = sender.source as? PlantBatchEditViewController, let plantBatch = sourceViewController.plantBatch {
             plantBatch.plant.addOrUpdatePlantBatch(plantBatch: plantBatch)
             PlantBatchRepository.store(plantBatch:plantBatch)
-            tableView.reloadData()
+        }
+    }
+    
+    @IBAction func deletePlantBatch(sender: UIStoryboardSegue) {
+        
+        if let sourceViewController = sender.source as? PlantBatchDetailViewController, let plantBatch = sourceViewController.plantBatch {
+            plantBatch.plant.deleteBatch(plantBatch: plantBatch)
+            PlantBatchRepository.delete(plantBatch:plantBatch)
         }
     }
 }

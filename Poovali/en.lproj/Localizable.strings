@@ -26,3 +26,12 @@
 "Ripening" = "Ripening";
 "Dormant" = "Dormant";
 "Last sowed"= "Last sowed : %@";
+"Created on date" = "created on %@";
+"Delete batch" = "Delete this batch?";
+"OK" = "OK";
+"Cancel" = "Cancel";
+"Edit" = "Edit";
+"Done" = "Done";
+"Duplicate batch" = "Batch already exists for this date, select another date!";
+"Duplicate plant" = "Duplicate plant name, input another name!";
+"Duplicate event" = "Activity already exists for this date, select another date!";

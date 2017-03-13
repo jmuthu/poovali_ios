@@ -15,6 +15,11 @@ class PlantListController: UITableViewController  {
         navigationItem.leftBarButtonItem = editButtonItem
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,7 +69,10 @@ class PlantListController: UITableViewController  {
             cell.plantTypeImageView.image = UIImage(named:"plant")
         }
         
-        if !plant.plantBatchList.isEmpty {
+        if plant.plantBatchList.isEmpty {
+            cell.lastBatchDateLabel.text = ""
+            cell.nextBatchDueLabel.text = ""
+        } else {
             cell.nameLabel.text! += " (" + plant.plantBatchList.count.description + ")"
             
             let dateFormatter = DateFormatter()
@@ -104,7 +112,7 @@ class PlantListController: UITableViewController  {
             os_log("Adding a new plant.", log: OSLog.default, type: .debug)
             
         case "ShowDetail":
-            guard let plantViewController = segue.destination as? PlantViewController else {
+            guard let plantEditViewController = segue.destination as? PlantEditViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
@@ -116,33 +124,19 @@ class PlantListController: UITableViewController  {
                 fatalError("The selected cell is not being displayed by the table")
             }
             
-            plantViewController.plant = PlantRepository.findAll()[indexPath.row]
+            plantEditViewController.plant = PlantRepository.findAll()[indexPath.row]
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
     }
     
-    
     //MARK: Actions
     
     @IBAction func unwindToPlantList(sender: UIStoryboardSegue) {
         
-        if let sourceViewController = sender.source as? PlantViewController, let plant = sourceViewController.plant {
+        if let sourceViewController = sender.source as? PlantEditViewController, let plant = sourceViewController.plant {
             PlantRepository.store(plant:plant)
-            tableView.reloadData()
-            /*
-             if let selectedIndexPath = tableView.indexPathForSelectedRow {
-             // Update an existing plant.
-             PlantRepository.store(plant:plant)
-             tableView.reloadRows(at: [selectedIndexPath], with: .none)
-             }
-             else {
-             // Add a new plant.
-             let newIndexPath = IndexPath(row: PlantRepository.findAll().count, section: 0)
-             tableView.insertRows(at: [newIndexPath], with: .automatic)
-             }
-             */
         }
     }
 }

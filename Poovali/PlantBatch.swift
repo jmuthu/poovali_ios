@@ -60,7 +60,7 @@ class PlantBatch: NSObject, NSCoding {
     
     func findEvent(name:String, inputDate:Date) ->Event? {
         return eventList.first(where: {
-            $0.getName() == name && $0.createdDate == inputDate
+            $0.getName() == name && $0.createdDate.getStartOfDay() == inputDate.getStartOfDay()
         })
     }
 

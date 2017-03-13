@@ -78,5 +78,39 @@
                 <string>sow in %d days</string>
             </dict>
         </dict>
+        <key>age</key>
+        <dict>
+            <key>NSStringLocalizedFormatKey</key>
+            <string>%#@days@</string>
+            <key>days</key>
+            <dict>
+                <key>NSStringFormatSpecTypeKey</key>
+                <string>NSStringPluralRuleType</string>
+                <key>NSStringFormatValueTypeKey</key>
+                <string>d</string>
+                <key>zero</key>
+                <string></string>
+                <key>one</key>
+                <string>1 day old, </string>
+                <key>other</key>
+                <string>%d days old, </string>
+            </dict>
+        </dict>
+        <key>activities</key>
+        <dict>
+            <key>NSStringLocalizedFormatKey</key>
+            <string>%#@count@</string>
+            <key>count</key>
+            <dict>
+                <key>NSStringFormatSpecTypeKey</key>
+                <string>NSStringPluralRuleType</string>
+                <key>NSStringFormatValueTypeKey</key>
+                <string>d</string>
+                <key>zero</key>
+                <string>Activities</string>
+                <key>other</key>
+                <string>Activities (%d)</string>
+            </dict>
+        </dict>
     </dict>
 </plist>

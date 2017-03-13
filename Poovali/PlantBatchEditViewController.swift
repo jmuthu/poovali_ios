@@ -39,8 +39,34 @@ class PlantBatchEditViewController: UIViewController,  UITextViewDelegate, UIPic
                 createdDatePicker.maximumDate = plantBatch.eventList.last?.createdDate.getStartOfDay()
             }
         }
+        createdDatePicker.addTarget(self, action: #selector(PlantBatchEditViewController.duplicateCheck(_:)), for: UIControlEvents.valueChanged)
         notesTextView.layer.borderWidth = 0.5
         notesTextView.layer.borderColor = UIColor.lightGray.cgColor
+        saveButton.isEnabled = false
+    }
+    
+    func duplicateCheck(_ datePicker: UIDatePicker) {
+        let plant:Plant?
+        if plantBatch == nil {
+            plant = PlantRepository.findAll()[plantListPickerView.selectedRow(inComponent: 0)]
+        } else {
+            plant = plantBatch!.plant
+        }
+        let dupPlantBatch = plant?.findBatch(inputDate: datePicker.date)
+        if dupPlantBatch != nil && !(dupPlantBatch?.sameIdentityAs(other: plantBatch))! {
+            let alertController = UIAlertController(title: "", message: NSLocalizedString("Duplicate batch", comment:""), preferredStyle: UIAlertControllerStyle.alert)
+            
+            let okAction = UIAlertAction(title: NSLocalizedString("OK", comment:""), style: UIAlertActionStyle.default)
+            {
+                (action : UIAlertAction) -> Void in
+                //self.performSegue(withIdentifier: "unwindDeletePlantBatch", sender: self)
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            saveButton.isEnabled = false
+        } else {
+            saveButton.isEnabled = true
+        }
     }
     
     override func didReceiveMemoryWarning() {
