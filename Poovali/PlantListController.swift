@@ -61,14 +61,8 @@ class PlantListController: UITableViewController  {
         cell.contentLabel.text = String.localizedStringWithFormat(
             NSLocalizedString("duration_days", comment: ""),
             plant.getCropDuration())
-        if plant.imageResourceId != nil {
-            cell.plantTypeImageView.image = UIImage(named:plant.imageResourceId!)
-        } else if plant.uiImage != nil {
-            cell.plantTypeImageView.image = plant.uiImage
-        } else {
-            cell.plantTypeImageView.image = UIImage(named:"plant")
-        }
-        
+        Helper.setImage(uIImageView: cell.plantTypeImageView, plant: plant)
+                
         if plant.plantBatchList.isEmpty {
             cell.lastBatchDateLabel.text = ""
             cell.nextBatchDueLabel.text = ""
@@ -82,21 +76,10 @@ class PlantListController: UITableViewController  {
                 NSLocalizedString("Last sowed", comment: ""),
                 dateFormatter.string(from: plantBatch.createdDate))
             
-            setOverDueText(labelView:cell.nextBatchDueLabel, due:plant.pendingSowDays())
+            Helper.setOverDueText(labelView:cell.nextBatchDueLabel, due:plant.pendingSowDays())
         }
         
         return cell
-    }
-    
-    func setOverDueText(labelView:UILabel, due:Int){
-        var format:String
-        if due > 0 {
-            labelView.textColor = UIColor.orange;
-            format = NSLocalizedString("sow_over_due", comment:"")
-        } else {
-            format = NSLocalizedString("sow_next", comment:"")
-        }
-        labelView.text = String.localizedStringWithFormat(format, abs(due))
     }
     
     //MARK: - Navigation
@@ -109,10 +92,14 @@ class PlantListController: UITableViewController  {
         switch(segue.identifier ?? "") {
             
         case "AddPlant":
-            os_log("Adding a new plant.", log: OSLog.default, type: .debug)
+            if #available(iOS 10.0, *) {
+                os_log("Adding a new plant.", log: OSLog.default, type: .debug)
+            } else {
+                // Fallback on earlier versions
+            }
             
         case "ShowDetail":
-            guard let plantEditViewController = segue.destination as? PlantEditViewController else {
+            guard let plantDetailViewController = segue.destination as? PlantDetailViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
@@ -124,7 +111,7 @@ class PlantListController: UITableViewController  {
                 fatalError("The selected cell is not being displayed by the table")
             }
             
-            plantEditViewController.plant = PlantRepository.findAll()[indexPath.row]
+            plantDetailViewController.plant = PlantRepository.findAll()[indexPath.row]
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
@@ -133,10 +120,17 @@ class PlantListController: UITableViewController  {
     
     //MARK: Actions
     
-    @IBAction func unwindToPlantList(sender: UIStoryboardSegue) {
+    @IBAction func savePlant(sender: UIStoryboardSegue) {
         
         if let sourceViewController = sender.source as? PlantEditViewController, let plant = sourceViewController.plant {
             PlantRepository.store(plant:plant)
+        }
+    }
+    
+    @IBAction func deletePlant(sender: UIStoryboardSegue) {
+        
+        if let sourceViewController = sender.source as? PlantDetailViewController, let plant = sourceViewController.plant {
+            PlantRepository.delete(plant:plant)
         }
     }
 }

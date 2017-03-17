@@ -10,8 +10,8 @@ import os.log
 
 
 class ActivityEditViewController: UIViewController,  UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate{
-//MARK: Properties
-
+    
+    //MARK: Properties
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var activityListPickerView: UIPickerView!
     @IBOutlet weak var createdDatePicker: UIDatePicker!
@@ -42,6 +42,7 @@ class ActivityEditViewController: UIViewController,  UITextViewDelegate, UIPicke
         createdDatePicker.addTarget(self, action: #selector(ActivityEditViewController.duplicateCheck(_:)), for: UIControlEvents.valueChanged)
         notesTextView.layer.borderWidth = 0.5
         notesTextView.layer.borderColor = UIColor.lightGray.cgColor
+        notesTextView.layer.cornerRadius = 5
         saveButton.isEnabled = false
     }
     
@@ -122,7 +123,11 @@ class ActivityEditViewController: UIViewController,  UITextViewDelegate, UIPicke
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
-            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            if #available(iOS 10.0, *) {
+                os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            } else {
+                // Fallback on earlier versions
+            }
             return
         }
         

@@ -20,6 +20,7 @@ class PlantBatchEditViewController: UIViewController,  UITextViewDelegate, UIPic
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var plantBatch:PlantBatch?
+    var plant:Plant?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,17 +43,20 @@ class PlantBatchEditViewController: UIViewController,  UITextViewDelegate, UIPic
         createdDatePicker.addTarget(self, action: #selector(PlantBatchEditViewController.duplicateCheck(_:)), for: UIControlEvents.valueChanged)
         notesTextView.layer.borderWidth = 0.5
         notesTextView.layer.borderColor = UIColor.lightGray.cgColor
+        notesTextView.layer.cornerRadius = 5
         saveButton.isEnabled = false
     }
     
     func duplicateCheck(_ datePicker: UIDatePicker) {
-        let plant:Plant?
-        if plantBatch == nil {
-            plant = PlantRepository.findAll()[plantListPickerView.selectedRow(inComponent: 0)]
+        let selectedPlant:Plant?
+        if plant != nil {
+            selectedPlant = plant
+        } else if plantBatch == nil {
+            selectedPlant = PlantRepository.findAll()[plantListPickerView.selectedRow(inComponent: 0)]
         } else {
-            plant = plantBatch!.plant
+            selectedPlant = plantBatch!.plant
         }
-        let dupPlantBatch = plant?.findBatch(inputDate: datePicker.date)
+        let dupPlantBatch = selectedPlant?.findBatch(inputDate: datePicker.date)
         if dupPlantBatch != nil && !(dupPlantBatch?.sameIdentityAs(other: plantBatch))! {
             let alertController = UIAlertController(title: "", message: NSLocalizedString("Duplicate batch", comment:""), preferredStyle: UIAlertControllerStyle.alert)
             
@@ -77,10 +81,14 @@ class PlantBatchEditViewController: UIViewController,  UITextViewDelegate, UIPic
     // PickerView
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int  {
-        return 1    }
+        return 1
+    }
     
     func pickerView(_ pickerView: UIPickerView,
                     numberOfRowsInComponent component: Int) -> Int {
+        if plant != nil {
+            return 1
+        }
         return PlantRepository.findAll().count
     }
     
@@ -88,21 +96,20 @@ class PlantBatchEditViewController: UIViewController,  UITextViewDelegate, UIPic
                     viewForRow row: Int,
                     forComponent component: Int,
                     reusing view: UIView?) -> UIView{
-        let plant = PlantRepository.findAll()[row]
+        let pickerPlant:Plant
+        if plant != nil {
+            pickerPlant = plant!
+        } else {
+            pickerPlant = PlantRepository.findAll()[row]
+        }
         let myView = UIView(frame: CGRect(x:0, y:0, width:pickerView.bounds.width, height:24))
         
         let myImageView = UIImageView(frame: CGRect(x:0, y:0, width:24, height:24))
-        if plant.imageResourceId != nil {
-            myImageView.image = UIImage(named:plant.imageResourceId!)
-        } else if plant.uiImage != nil {
-            myImageView.image = plant.uiImage!
-        } else {
-            myImageView.image = UIImage(named:"plant")
-        }
-        
+        Helper.setImage(uIImageView: myImageView, plant: pickerPlant)
+                
         let myLabel = UILabel(frame: CGRect(x:40, y:0, width:pickerView.bounds.width, height:24 ))
         //myLabel.font = UIFont.preferredFont(forTextStyle:UIFontTextStyle.subheadline)
-        myLabel.text = plant.name
+        myLabel.text = pickerPlant.name
         
         myView.addSubview(myLabel)
         myView.addSubview(myImageView)
@@ -127,7 +134,11 @@ class PlantBatchEditViewController: UIViewController,  UITextViewDelegate, UIPic
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
-            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            if #available(iOS 10.0, *) {
+                os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            } else {
+                // Fallback on earlier versions
+            }
             return
         }
         
@@ -136,17 +147,17 @@ class PlantBatchEditViewController: UIViewController,  UITextViewDelegate, UIPic
             plantBatch!.createdDate = createdDatePicker.date
             plantBatch!.desc = notesTextView.text
         } else {
-            let plant = PlantRepository.findAll()[plantListPickerView.selectedRow(inComponent: 0)]
+            let selectedPlant:Plant
+            if plant == nil {
+                selectedPlant = PlantRepository.findAll()[plantListPickerView.selectedRow(inComponent: 0)]
+            } else {
+                selectedPlant = plant!
+            }
             plantBatch = PlantBatch(id:PlantBatchRepository.nextPlantBatchId(),
-                                    name:"",
-                                    plantId:0,
+                                    plant:selectedPlant,
                                     createdDate:createdDatePicker.date,
                                     description:notesTextView.text)
-            plantBatch!.plant = plant
         }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        plantBatch!.name  = plantBatch!.plant!.name + " - " + dateFormatter.string(from: createdDatePicker.date)
     }
     
     //MARK: Actions

@@ -29,7 +29,7 @@ class PlantBatchDetailViewController: UIViewController, UITableViewDelegate, UIT
         activityTableView.dataSource = self
         
         editButton.setTitle(NSLocalizedString("Edit", comment:""),for: .normal)
-        
+        /*
         borderView.layer.borderWidth = 0.4
         borderView.layer.borderColor = UIColor.lightGray.cgColor
         borderView.layer.shadowColor = UIColor.black.cgColor
@@ -45,7 +45,7 @@ class PlantBatchDetailViewController: UIViewController, UITableViewDelegate, UIT
         activityTableView.layer.shadowOpacity = 0.7
         activityTableView.layer.shadowRadius = 3.0
         activityTableView.layer.shadowOffset = CGSize(width:1, height:1)
-        
+        */
         setSubViews()
     }
     
@@ -69,15 +69,7 @@ class PlantBatchDetailViewController: UIViewController, UITableViewDelegate, UIT
             
             growthStageLabel.text = String(describing: plantBatch.getStage())
             stageProgress.angle = Double(plantBatch.getProgressInPercent())*3.6
-        
-            if plantBatch.plant.imageResourceId != nil {
-                plantImageView.image = UIImage(named:plantBatch.plant.imageResourceId!)
-            } else if plantBatch.plant.uiImage != nil {
-                plantImageView.image = plantBatch.plant.uiImage
-            } else {
-                plantImageView.image = UIImage(named:"plant")
-                
-            }
+            Helper.setImage(uIImageView: plantImageView, plant: plantBatch.plant)
             setActivityLabel()
         }
     }
@@ -178,9 +170,12 @@ class PlantBatchDetailViewController: UIViewController, UITableViewDelegate, UIT
             }
             
             plantBatchEditViewController.plantBatch = plantBatch
-            
-        default: break
-            //fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+        
+        case "unwindDeletePlantBatch":
+            break
+        
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
     }
     

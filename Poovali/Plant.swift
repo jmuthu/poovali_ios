@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class Plant: NSObject, NSCoding{
-    
     var id:UInt32
     var name:String
     var imageResourceId:String?
@@ -98,7 +97,7 @@ class Plant: NSObject, NSCoding{
     }
     
     func pendingSowDays() -> Int!{
-        if getLatestBatch() == nil {
+        if plantBatchList.isEmpty {
             return nil
         }
         return Date.daysBetween(fromDate: getNextSowingDate(createdDate: (getLatestBatch()?.createdDate)!), toDate:Date())
@@ -136,6 +135,8 @@ class Plant: NSObject, NSCoding{
         case Fruiting = 2
         case Ripening = 3
         case Dormant = 4
+        
+        static let stages = [Seedling, Flowering, Fruiting, Ripening]
     }
     
     public enum DefaultPlant: UInt32 {

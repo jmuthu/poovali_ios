@@ -15,12 +15,17 @@ class PlantBatch: NSObject, NSCoding {
         }
     }
     var plantId:UInt32
-    var name:String
+    var name:String {
+        return plant.name + " - " + createdDateString!
+    }
+    
     var createdDate:Date {
         didSet {
-            latestEventCreatedDate = createdDate
+            initDateString()
         }
     }
+    
+    var createdDateString : String?
     var latestEventCreatedDate:Date
     var eventList = [Event]()
     var desc:String
@@ -29,14 +34,33 @@ class PlantBatch: NSObject, NSCoding {
         return plant.name
     }
     
-    init(id:UInt32, name:String, plantId:UInt32, createdDate:Date,
+    init(id:UInt32, plant:Plant, createdDate:Date,
          description:String) {
         self.id = id
-        self.plantId = plantId
-        self.name = name
+        self.plant = plant
+        self.plantId = plant.id
         self.createdDate = createdDate
         self.latestEventCreatedDate = createdDate
         self.desc = description
+        super.init()
+        self.initDateString()
+    }
+    
+    init(id:UInt32, plantId:UInt32, createdDate:Date,
+         description:String) {
+        self.id = id
+        self.plantId = plantId
+        self.createdDate = createdDate
+        self.latestEventCreatedDate = createdDate
+        self.desc = description
+        super.init()
+        self.initDateString()
+    }
+    
+    func initDateString() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        self.createdDateString = dateFormatter.string(from: self.createdDate)
     }
     
     func addOrUpdateEvent(event:Event) {
@@ -107,7 +131,6 @@ class PlantBatch: NSObject, NSCoding {
     
     func encode(with coder: NSCoder) {
         coder.encode(id, forKey: "id")
-        coder.encode(name, forKey: "name")
         coder.encode(desc, forKey:"desc")
         coder.encode(plantId, forKey:"plantId")
         coder.encode(createdDate, forKey:"createdDate")
@@ -115,11 +138,10 @@ class PlantBatch: NSObject, NSCoding {
     
     required convenience init(coder decoder: NSCoder) {
         let id = decoder.decodeObject(forKey: "id") as! UInt32
-        let name = decoder.decodeObject(forKey: "name") as! String
         let desc = decoder.decodeObject(forKey: "desc") as! String
         let plantId = decoder.decodeObject(forKey:"plantId") as! UInt32
         let createdDate = decoder.decodeObject(forKey:"createdDate") as! Date
-        self.init(id:id, name:name, plantId:plantId, createdDate:createdDate, description:desc)
+        self.init(id:id, plantId:plantId, createdDate:createdDate, description:desc)
     }
     
     /*

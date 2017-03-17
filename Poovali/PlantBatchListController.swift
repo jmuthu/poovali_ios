@@ -9,6 +9,7 @@ import UIKit
 import os.log
 
 class PlantBatchListController: UITableViewController {
+    var plant:Plant?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +33,29 @@ class PlantBatchListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if plant != nil {
+            return plant!.plantBatchList.count
+        }
         return PlantBatchRepository.findAll().count
     }
     
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if plant != nil {
+            return plant!.plantBatchList[indexPath.row].eventList.count == 0
+        }
         return PlantBatchRepository.findAll()[indexPath.row].eventList.count == 0
     }
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let plantBatch = PlantBatchRepository.findAll()[indexPath.row]
+            let plantBatch:PlantBatch
+            if plant != nil {
+                plantBatch = plant!.plantBatchList[indexPath.row]
+            } else {
+                plantBatch = PlantBatchRepository.findAll()[indexPath.row]
+            }
             plantBatch.plant.deleteBatch(plantBatch: plantBatch)
             PlantBatchRepository.delete(plantBatch:plantBatch)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -56,10 +68,18 @@ class PlantBatchListController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlantBatchTableViewCell", for: indexPath) as? PlantBatchTableViewCell  else {
             fatalError("The dequeued cell is not an instance of PlantBatchTableViewCell.")
         }
+        let plantBatch:PlantBatch
+        if plant != nil {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            plantBatch = plant!.plantBatchList[indexPath.row]
+            cell.nameLabel.text = dateFormatter.string(from:plantBatch.createdDate)
+        } else {
+            plantBatch = PlantBatchRepository.findAll()[indexPath.row]
+            cell.nameLabel.text = plantBatch.name
+        }
         
-        let plantBatch = PlantBatchRepository.findAll()[indexPath.row]
-        cell.nameLabel.text = plantBatch.name
-        cell.batchStatusLabel.text = String(describing: plantBatch.getStage())
+        cell.batchStatusLabel.text = NSLocalizedString(String(describing: plantBatch.getStage()), comment:"")
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         cell.eventCreateDateLabel.text  = dateFormatter.string(from: plantBatch.latestEventCreatedDate)
@@ -72,13 +92,10 @@ class PlantBatchListController: UITableViewController {
             cell.eventDescriptionLabel.text = NSLocalizedString("Sow", comment:"")
         }
         cell.circularProgressView.angle = Double(plantBatch.getProgressInPercent())*3.6
-        if plantBatch.plant.imageResourceId != nil {
-            cell.plantTypeImageView.image = UIImage(named:plantBatch.plant.imageResourceId!)
-        } else if plantBatch.plant.uiImage != nil {
-            cell.plantTypeImageView.image = plantBatch.plant.uiImage
+        if plant != nil {
+            cell.plantTypeImageView.image = nil
         } else {
-            cell.plantTypeImageView.image = UIImage(named:"plant")
- 
+            Helper.setImage(uIImageView: cell.plantTypeImageView, plant: plantBatch.plant)
         }
         return cell
     }
@@ -91,7 +108,11 @@ class PlantBatchListController: UITableViewController {
         switch(segue.identifier ?? "") {
             
         case "AddPlantBatch":
-            os_log("Adding a new plant batch.", log: OSLog.default, type: .debug)
+            if #available(iOS 10.0, *) {
+                os_log("Adding a new plant batch.", log: OSLog.default, type: .debug)
+            } else {
+                // Fallback on earlier versions
+            }
             
         case "ShowDetail":
             guard let plantBatchDetailViewController = segue.destination as? PlantBatchDetailViewController else {
@@ -105,8 +126,11 @@ class PlantBatchListController: UITableViewController {
             guard let indexPath = tableView.indexPath(for: selectedPlantBatchCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
-            
-            plantBatchDetailViewController.plantBatch = PlantBatchRepository.findAll()[indexPath.row]
+            if plant != nil {
+                plantBatchDetailViewController.plantBatch = plant?.plantBatchList[indexPath.row]
+            } else {
+                plantBatchDetailViewController.plantBatch = PlantBatchRepository.findAll()[indexPath.row]
+            }
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")

@@ -112,5 +112,21 @@
                 <string>Activities (%d)</string>
             </dict>
         </dict>
+        <key>batches</key>
+        <dict>
+            <key>NSStringLocalizedFormatKey</key>
+            <string>%#@count@</string>
+            <key>count</key>
+            <dict>
+                <key>NSStringFormatSpecTypeKey</key>
+                <string>NSStringPluralRuleType</string>
+                <key>NSStringFormatValueTypeKey</key>
+                <string>d</string>
+                <key>zero</key>
+                <string>Batches</string>
+                <key>other</key>
+                <string>Batches (%d)</string>
+            </dict>
+        </dict>
     </dict>
 </plist>

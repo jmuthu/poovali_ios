@@ -27,39 +27,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if PlantRepository.findAll().count == 0 {
             return
         }
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-            if !granted {
-                
-            }
-        }
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 15,
-                                              repeats: false)
-        // Schedule the notification.
-        for  plant in PlantRepository.findAll() {
-            if  plant.plantBatchList.isEmpty {
-                continue
-            }
-            let dayCount = plant.pendingSowDays()!
-            if (dayCount < 0) {
-                continue
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+                if !granted {
+                    
+                }
             }
             
-            let content = UNMutableNotificationContent()
-            content.title = String.localizedStringWithFormat(
-                NSLocalizedString("Sow plant", comment: ""),
-                plant.name)
-            content.body = String.localizedStringWithFormat(
-                NSLocalizedString("days_overdue", comment: ""),
-                dayCount)
-            content.sound = UNNotificationSound.default()
-            let request = UNNotificationRequest(
-                identifier: plant.name,
-                content: content,
-                trigger: trigger)
-            center.add(request)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 15,
+                                                            repeats: false)
+            // Schedule the notification.
+            for  plant in PlantRepository.findAll() {
+                if  plant.plantBatchList.isEmpty {
+                    continue
+                }
+                let dayCount = plant.pendingSowDays()!
+                if (dayCount < 0) {
+                    continue
+                }
+                
+                let content = UNMutableNotificationContent()
+                content.title = String.localizedStringWithFormat(
+                    NSLocalizedString("Sow plant", comment: ""),
+                    plant.name)
+                content.body = String.localizedStringWithFormat(
+                    NSLocalizedString("days_overdue", comment: ""),
+                    dayCount)
+                content.sound = UNNotificationSound.default()
+                let request = UNNotificationRequest(
+                    identifier: plant.name,
+                    content: content,
+                    trigger: trigger)
+                center.add(request)
+            }
+        }else {
+            // Fallback on earlier versions
         }
+        
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

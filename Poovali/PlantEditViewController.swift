@@ -120,14 +120,18 @@ class PlantEditViewController: UIViewController,  UITextFieldDelegate, UIImagePi
             owningNavigationController.popViewController(animated: true)
         }
         else {
-            fatalError("The PlantViewController is not inside a navigation controller.")
+            fatalError("The PlantEditViewController is not inside a navigation controller.")
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
-            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            if #available(iOS 10.0, *) {
+                os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            } else {
+                // Fallback on earlier versions
+            }
             return
         }
         let seedling:Int? = Int(seedlingText.text!)

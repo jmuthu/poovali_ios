@@ -20,9 +20,17 @@ class FileRepository {
     public static func write(entityName:String, data:Any) {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(data, toFile: getPath(entityName))
         if isSuccessfulSave {
-            os_log("%@ successfully saved.", log: OSLog.default, type: .debug, entityName)
+            if #available(iOS 10.0, *) {
+                os_log("%@ successfully saved.", log: OSLog.default, type: .debug, entityName)
+            } else {
+                
+            }
         } else {
-            os_log("Failed to save %@", log: OSLog.default, type: .error, entityName)
+            if #available(iOS 10.0, *) {
+                os_log("Failed to save %@", log: OSLog.default, type: .error, entityName)
+            } else {
+                
+            }
         }
     }
     

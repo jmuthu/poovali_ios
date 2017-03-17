@@ -28,6 +28,7 @@
 "Last sowed"= "Last sowed : %@";
 "Created on date" = "created on %@";
 "Delete batch" = "Delete this batch?";
+"Delete plant" = "Delete this plant?";
 "OK" = "OK";
 "Cancel" = "Cancel";
 "Edit" = "Edit";
