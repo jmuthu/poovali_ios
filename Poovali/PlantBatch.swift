@@ -26,7 +26,6 @@ class PlantBatch: NSObject, NSCoding {
     }
     
     var createdDateString : String?
-    var latestEventCreatedDate:Date
     var eventList = [Event]()
     var desc:String
     
@@ -40,7 +39,6 @@ class PlantBatch: NSObject, NSCoding {
         self.plant = plant
         self.plantId = plant.id
         self.createdDate = createdDate
-        self.latestEventCreatedDate = createdDate
         self.desc = description
         super.init()
         self.initDateString()
@@ -51,7 +49,6 @@ class PlantBatch: NSObject, NSCoding {
         self.id = id
         self.plantId = plantId
         self.createdDate = createdDate
-        self.latestEventCreatedDate = createdDate
         self.desc = description
         super.init()
         self.initDateString()
@@ -67,9 +64,6 @@ class PlantBatch: NSObject, NSCoding {
         if !eventList.contains(event) {
             eventList.append(event)
             event.batchId = id
-        }
-        if event.createdDate > latestEventCreatedDate {
-            latestEventCreatedDate = event.createdDate
         }
         eventList.sort{
             $0.createdDate > $1.createdDate
@@ -143,27 +137,4 @@ class PlantBatch: NSObject, NSCoding {
         let createdDate = decoder.decodeObject(forKey:"createdDate") as! Date
         self.init(id:id, plantId:plantId, createdDate:createdDate, description:desc)
     }
-    
-    /*
-     static class BatchDescendingComparator implements Comparator<PlantBatch> {
-     @Override
-     public int compare(PlantBatch b1, PlantBatch b2) {
-     return b2.getCreatedDate().compareTo(b1.getCreatedDate());
-     }
-     }
-     
-     static class BatchModifiedDescendingComparator implements Comparator<PlantBatch> {
-     @Override
-     public int compare(PlantBatch b1, PlantBatch b2) {
-     return b2.getLatestEventCreatedDate().compareTo(b1.getLatestEventCreatedDate());
-     }
-     }
-     
-     static class BatchNameComparator implements Comparator<PlantBatch> {
-     @Override
-     public int compare(PlantBatch b1, PlantBatch b2) {
-     return b1.getName().compareTo(b2.getName());
-     }
-     }
-     */
 }

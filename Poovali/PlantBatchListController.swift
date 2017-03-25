@@ -68,6 +68,7 @@ class PlantBatchListController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlantBatchTableViewCell", for: indexPath) as? PlantBatchTableViewCell  else {
             fatalError("The dequeued cell is not an instance of PlantBatchTableViewCell.")
         }
+        
         let plantBatch:PlantBatch
         if plant != nil {
             let dateFormatter = DateFormatter()
@@ -80,17 +81,21 @@ class PlantBatchListController: UITableViewController {
         }
         
         cell.batchStatusLabel.text = NSLocalizedString(String(describing: plantBatch.getStage()), comment:"")
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        cell.eventCreateDateLabel.text  = dateFormatter.string(from: plantBatch.latestEventCreatedDate)
+        
         if !plantBatch.eventList.isEmpty {
             let event = plantBatch.eventList.first!
             cell.eventDescriptionLabel.text = event.desc.isEmpty ? event.getName(): event.desc
             cell.eventTypeImageView.image = UIImage(named:event.getImageResourceId())
+        
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            cell.eventCreateDateLabel.text  = dateFormatter.string(from:event.createdDate)
         } else {
             cell.eventTypeImageView.image = UIImage(named:"sow")
             cell.eventDescriptionLabel.text = NSLocalizedString("Sow", comment:"")
+            cell.eventCreateDateLabel.text  = ""
         }
+        
         cell.circularProgressView.angle = Double(plantBatch.getProgressInPercent())*3.6
         if plant != nil {
             cell.plantTypeImageView.image = nil

@@ -110,7 +110,7 @@ class Plant: NSObject, NSCoding{
         }
         
         plantBatchList.sort(by:{
-            $0.latestEventCreatedDate.compare($1.latestEventCreatedDate) == ComparisonResult.orderedDescending
+            $0.createdDate.compare($1.createdDate) == ComparisonResult.orderedDescending
         })
         
     }
